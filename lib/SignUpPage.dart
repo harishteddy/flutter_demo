@@ -29,6 +29,8 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
+
+
         child: Form(
           key: _signUpFormKey,
           child: Column(

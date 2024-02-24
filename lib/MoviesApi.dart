@@ -6,7 +6,7 @@ import 'package:harish_demo/constants.dart';
 
 class MoviesApi {
   Future<List<MovieModel>> getMoviesData() async {
-    List<MovieModel> moviesList = [];
+   List<MovieModel> moviesList = [];
     try {
       http.Response response = await http.get(Uri.parse(Constants.moviesApi));
       if (response.statusCode == 200) {

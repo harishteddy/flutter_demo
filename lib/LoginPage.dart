@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'SignUpPage.dart';
 import 'DashboardScreen.dart';
+import 'SecondScreen.dart';
+
 
 
 class LoginPage extends StatefulWidget {
@@ -20,13 +22,7 @@ class _LoginPageState extends State<LoginPage> {
       // Valid form, handle login logic
       String email = _emailController.text;
       String password = _passwordController.text;
-     /* Fluttertoast.showToast(
-        msg: "Login successful!\nEmail: $email\nPassword: $password",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.SNACKBAR,
-        backgroundColor: Colors.green,
-        textColor: Colors.black,
-      );*/
+
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => DashboardScreen()),
@@ -50,8 +46,11 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextFormField(
+                keyboardType: TextInputType.emailAddress,
                 controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: InputDecoration(labelText: 'Email',
+                border: OutlineInputBorder()),
+
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
@@ -61,9 +60,11 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 16.0),
               TextFormField(
+                keyboardType: TextInputType.visiblePassword,
                 controller: _passwordController,
                 obscureText: true,
-                decoration: InputDecoration(labelText: 'Password'),
+                decoration: InputDecoration(labelText: 'Password',
+                border: OutlineInputBorder()),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your password';
@@ -85,6 +86,21 @@ class _LoginPageState extends State<LoginPage> {
                   );
                 },
                 child: Text('Don\'t have an account? Sign Up'),
+              ),
+
+              SizedBox(height: 16.0),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SecondScreen()),
+                  );
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.blue), // Specify background color
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Specify text color
+                ),
+                child: Text('Guest login'),
               ),
             ],
           ),

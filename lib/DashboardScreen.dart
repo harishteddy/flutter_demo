@@ -4,6 +4,7 @@ import 'SecondScreen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:harish_demo/MyHomePage.dart';
 import 'package:harish_demo/MoviesListScreen.dart';
+import 'package:harish_demo/TestScreen.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -22,8 +23,11 @@ class DashboardScreen extends StatelessWidget {
             title: 'Item 1',
             icon: Icons.home,
             onTap: () {
-              // Handle item tap
-              print('Item 1 tapped!');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TestScreen()),
+              );
+
             },
           ),
           DashboardItem(
@@ -59,9 +63,6 @@ class DashboardScreen extends StatelessWidget {
             title: 'Item 4',
             icon: Icons.mail,
             onTap: () {
-
-
-
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => MyHomePage()),

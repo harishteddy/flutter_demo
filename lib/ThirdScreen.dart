@@ -11,8 +11,6 @@ class _ThirdScreenState extends State<ThirdScreen> {
 
   getTextInputData() {
     setState(() {
-
-
       result = textFieldValueHolder.text;
     });
   }
