@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'SecondScreen.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:harish_demo/MyHomePage.dart';
+import 'package:harish_demo/MoviesListScreen.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -45,12 +47,26 @@ class DashboardScreen extends StatelessWidget {
             onTap: () {
               // Handle item tap
               print('Item 3 tapped!');
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MoviesListScreen()),
+              );
+
             },
           ),
           DashboardItem(
             title: 'Item 4',
             icon: Icons.mail,
             onTap: () {
+
+
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyHomePage()),
+              );
+
               // Handle item tap
               print('Item 4 tapped!');
             },

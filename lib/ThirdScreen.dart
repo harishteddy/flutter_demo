@@ -51,13 +51,11 @@ class _ThirdScreenState extends State<ThirdScreen> {
                 getTextInputData();
                 //Navigator.pop(context); // Navigate back to the previous screen
               },
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xFFFFC107),
-                onPrimary: Colors.white,
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-              ),
               child: Text('Get Text Field Entered Data'),
             ),
+
+
+
             Padding(
               padding: EdgeInsets.all(8.0),
               child: Text("Entered Text is = $result", style: TextStyle(fontSize: 20)),

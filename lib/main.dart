@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:harish_demo/DashboardScreen.dart';
 import 'package:harish_demo/LoginPage.dart';
+import 'package:harish_demo/MyHomePage.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      /*home:  LoginPage(),*/
       home:  LoginPage(),
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
