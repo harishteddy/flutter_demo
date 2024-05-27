@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'ThirdScreen.dart';
+import 'DashboardScreen.dart';
 
 class SecondScreen extends StatefulWidget {
   @override
@@ -8,6 +9,20 @@ class SecondScreen extends StatefulWidget {
 
 class _SecondScreenState extends State<SecondScreen> {
   final TextEditingController _emailController = TextEditingController();
+  final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
+
+  void _login() {
+    if (_loginFormKey.currentState?.validate() ?? false) {
+      // Valid form, handle login logic
+      String email = _emailController.text;
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => DashboardScreen()),
+      );
+      // Implement your login logic here
+      print('Login Successful!\nEmail: $email');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,64 +30,38 @@ class _SecondScreenState extends State<SecondScreen> {
       appBar: AppBar(
         title: Text("harish"),
       ),
-       body:Padding(
-         padding: const EdgeInsets.all(16.0),
-         child:Column(
-             children:[
-               TextFormField(
-                   controller: _emailController,
-                   decoration: InputDecoration(
-                   labelText: 'Enter your text',
-                   border: OutlineInputBorder(),
-                 ),
-                 obscureText: true,
-                 onChanged: (text) {
-                   print('First text field: $text (${text.characters.length})');
-                 },
-               ),
-               Padding(
-                 padding: const EdgeInsets.symmetric(vertical: 8.0),
-                 child: ElevatedButton(
-                   style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                   onPressed: () {
-                     setState(() {
-
-                     });
-                   },
-                   child: Text('Submit'),
-                 ),
-               ),
-             ]
-         ),
-       )
-
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _loginFormKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: _emailController,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter your email';
+                  }
+                  // You can add more email validation logic here if needed
+                  return null;
+                },
+                decoration: InputDecoration(
+                  labelText: 'Enter your email',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: _login,
+                child: Text('Submit'),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
