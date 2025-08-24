@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "270418731060",
+    "project_id": "flutter-smartech",
+    "storage_bucket": "flutter-smartech.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270418731060:android:9a79a5671e595ba9d16a61",
+        "android_client_info": {
+          "package_name": "com.netcore.harish_demo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAPtP6CRP-XNE9FZwip9iYEkA2RW5EJYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
