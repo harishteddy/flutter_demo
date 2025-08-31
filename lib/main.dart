@@ -47,7 +47,7 @@ Future<void> main() async {
     print("pn token is null");
   }
 
-  /// 🔹 Foreground message handler
+  /// 🔹 Foreground message handlers
   FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
     bool isFromSmt = await SmartechPush()
         .isNotificationFromSmartech(message.data.toString());
