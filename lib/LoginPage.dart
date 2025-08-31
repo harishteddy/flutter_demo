@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smartech_base/smartech_base.dart';
+import 'package:smartech_nudges/netcore_px.dart';
 import 'SignUpPage.dart';
 import 'DashboardScreen.dart';
 import 'SecondScreen.dart';
@@ -25,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
       String email = _emailController.text;
       String password = _passwordController.text;
       Smartech().login(email);
+      NetcorePX.instance.setUserId(email);
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => DashboardScreen()),

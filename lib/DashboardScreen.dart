@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smartech_base/smartech_base.dart';
+import 'package:smartech_nudges/netcore_px.dart';
 import 'SecondScreen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:harish_demo/MyHomePage.dart';
@@ -68,6 +69,7 @@ class DashboardScreen extends StatelessWidget {
             onTap: () {
 
               Smartech().logoutAndClearUserIdentity(true);
+              NetcorePX.instance.clearUserId();
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => MyHomePage()),

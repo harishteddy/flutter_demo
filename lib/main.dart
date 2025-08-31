@@ -5,7 +5,12 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:harish_demo/LoginPage.dart';
 import 'package:smartech_base/smartech_base.dart';
+import 'package:smartech_nudges/listener/px_listener.dart';
+import 'package:smartech_nudges/netcore_px.dart';
+import 'package:smartech_nudges/px_widget.dart';
+import 'package:smartech_nudges/tracker/route_obersver.dart';
 import 'package:smartech_push/smartech_push.dart';
+import 'package:smartech_push/smt_notification_callback.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 @pragma('vm:entry-point')
@@ -107,19 +112,70 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
+
+
+class _PxDeeplinkListenerImpl extends PxDeeplinkListener {
+  @override
+  void onLaunchUrl(String url) {
+    debugPrint('PXDeeplink: $url');
+  }
+}
+
+class _PxActionListenerImpl extends PxActionListener {
+
+  @override
+  void onActionPerformed(String action) {
+    debugPrint('PXAction: $action');
+  }
+}
+
+class _PxInternalEventsListener extends PxInternalEventsListener {
+
+  @override
+  void onEvent(String eventName, Map dataFromHansel) {
+
+    Map<String, dynamic> newMap = Map<String, dynamic>. from(dataFromHansel.map ((key, value) {
+      return MapEntry (key.toString(), value);
+    }));
+    Smartech().trackEvent(eventName, newMap);
+    debugPrint('PXEvent: $eventName eventData : $dataFromHansel');
+  }
+}
+
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+
+    NetcorePX.instance.registerPxActionListener("flutter action",_PxActionListenerImpl());
+    NetcorePX.instance.registerPxInternalEventsListener(_PxInternalEventsListener());
+    NetcorePX.instance.registerPxDeeplinkListener(_PxDeeplinkListenerImpl());
+    NetcorePX.instance.enableDebugLogs();
+    NetcorePX.instance.enableHierarchyLogs();
+    SmartechPush().requestNotificationPermission(MyNotificationPermissionCallback());
+    return SmartechPxWidget(
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+
+        navigatorObservers: [PxNavigationObserver()],
+        home: LoginPage(),
       ),
-      home: LoginPage(),
     );
   }
 }
+
+class MyNotificationPermissionCallback implements SMTNotificationPermissionCallback {
+  @override
+  void notificationPermissionStatus(int status) {
+    print('Permission status: $status');
+  }
+}
+

@@ -405,6 +405,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.5.1"
+  smartech_nudges:
+    dependency: "direct main"
+    description:
+      name: smartech_nudges
+      sha256: dbb8c33ec7b1f1165892567c7ea586f6cd93cbfd6a450512432875221953d093
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.2"
   smartech_push:
     dependency: "direct main"
     description:

@@ -37,6 +37,7 @@ dependencies:
   smartech_base: ^3.5.1
   smartech_push: ^3.5.2
   smartech_appinbox: ^3.5.3
+  smartech_nudges: ^1.2.2
   firebase_messaging: ^15.0.4
   firebase_core: ^3.3.0
   url_launcher: ^6.0.9
