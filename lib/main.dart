@@ -1,5 +1,3 @@
-import 'package:fetch_mobile_numbers/fetch_mobile_numbers.dart';
-import 'package:fetch_mobile_numbers/sim_card/sim_card_info.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -87,26 +85,7 @@ Future<void> main() async {
     }
   });
 
-  /// 🔹 Fetch SIM card numbers after everything is initialized
-  final fetchMobileNumbers = FetchMobileNumbers();
 
-  try {
-    List<SimCard>? simCards = await fetchMobileNumbers.getMobileNumbers();
-    print("Carrier Name: ${simCards}");
-    if (simCards != null && simCards.isNotEmpty) {
-      for (var simCard in simCards) {
-        print("------ SIM INFO ------");
-        print("Slot Index: ${simCard.slotIndex}");
-        print("Carrier Name: ${simCard.carrierName}");
-        print("Number: ${simCard.number}");
-        print("----------------------");
-      }
-    } else {
-      print("No SIM cards found.");
-    }
-  } catch (e) {
-    print("Error fetching SIM cards: $e");
-  }
 
 
   runApp(const MyApp());
